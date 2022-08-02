@@ -14,7 +14,15 @@
             </div>
         </div>
     </div>
-    <div>
-        <a style="color: purple" href="/page-creation">Créer une page</a>
+    <x-slot name="slot">
+     <div class="pages-list-header">
+            <div class="pages-list-title">
+                <h1> Pages </h1>
+            </div>
+            <div class="create-page-button">
+                <a href="{{ route('page.create') }}"><x-button>Ajouter</x-button></a>
+            </div>
+        </div>
     </div>
+    </x-slot>
 </x-backoffice-layout>

@@ -1,0 +1,1 @@
+<h1>page {{$page["title"]}} edit </h1>

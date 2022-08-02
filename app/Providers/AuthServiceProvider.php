@@ -27,11 +27,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-    /**
-    * Rend true si l'utilisateur appartient au group admin
-    */
-    $gate->define('isAdmin', function($user) {
-    return $user->groupd_id == 1;
-    });
+        /**
+         * Rend true si l'utilisateur appartient au group admin
+         */
+        $gate->define('isAdmin', function ($user) {
+            return $user->groupd_id == 1;
+        });
     }
 }
