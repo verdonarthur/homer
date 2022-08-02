@@ -14,4 +14,7 @@
             </div>
         </div>
     </div>
+    <div>
+        <a style="color: purple" href="/page-creation">Créer une page</a>
+    </div>
 </x-backoffice-layout>
