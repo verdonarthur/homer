@@ -15,14 +15,12 @@
         </div>
     </div>
     <x-slot name="slot">
-     <div class="pages-list-header">
-            <div class="pages-list-title">
-                <h1> Pages </h1>
-            </div>
-            <div class="create-page-button">
-                <a href="{{ route('page.create') }}"><x-button>Ajouter</x-button></a>
+        <div class="pages-list-header">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <a href="{{ route('pages.index') }}">
+                    <x-button>Pages</x-button>
+                </a>
             </div>
         </div>
-    </div>
     </x-slot>
 </x-backoffice-layout>

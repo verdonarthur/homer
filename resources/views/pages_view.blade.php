@@ -17,7 +17,7 @@
     <x-slot name="slot">
         <div class="pages-list-header">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <a href="{{ route('page.create') }}">
+                <a href="{{ route('pages.create') }}">
                     <x-button>Add new page</x-button>
                 </a>
             </div>
@@ -29,13 +29,13 @@
                         <div class="title">{{ $page->title }}</div>
                         <div class="url">{{ $page->url }}</div>
                         <a href="{{ route('pages.edit', [$page->id]) }}">
-                            <x-button>Edit</x-button>
+                            <x-button style="background-color: #818CF8">Edit</x-button>
                         </a>
                         <form method="POST" action="{{ route('pages.destroy', [$page->id]) }}">
                             @csrf
                             @method('DELETE')
                             <a href="{{ route('pages.destroy', [$page->id]) }}">
-                                <x-button>Destroy</x-button>
+                                <x-button style="background-color: tomato">Destroy</x-button>
                             </a>
                         </form>
                     </li>
