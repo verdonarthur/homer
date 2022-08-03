@@ -13,7 +13,7 @@ class PagesTableSeeder extends Seeder
         for($i = 1; $i <= 50; $i ++){
             DB::table('pages')->insert([
                 "title" => "Page title ".$i,
-                "url" => "url/".$i
+                "url" => "url".$i
             ]);
         }
     }

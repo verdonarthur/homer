@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PageUpdateRequest;
+use App\Http\Requests\PageCreationRequest;
 
 class PagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {   
         $pages = Page::paginate(10);
@@ -20,11 +18,7 @@ class PagesController extends Controller
         return view("pages_view", compact("pages", "links"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         $user = Auth::user();
@@ -35,71 +29,52 @@ class PagesController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function store(PageCreationRequest $request)
     {
-        //
+        $new_page = Page::create($request->all());
+        $new_page->save();
+        return redirect('/pages')->withOk('Your page has been added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($url)
     {
         $page = Page::where('url', '=', $url)->first();
         if($page != null){
-            return view("page_view.blade.php");
+            return view("page_view")->with("page", $page);
         } else {
             return abort(403, "This page does not exist");
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $page = Page::where("id", "=", $id)->first();
         if($page != null){
             return view("pages_edit_view")->with("page", $page);
         }else {
-            abort(403, "The requested page does not exist.");
+            return abort(403, "The requested page does not exist.");
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(PageUpdateRequest $request, $id)
     {
-        //
+        $page = Page::where('id', '=', $id)->first();
+        $page->update([
+            "title" => $request->input('title'),
+            "url" => $request->input('url')
+        ]);
+        return redirect('/pages')->withOk("The page has correctly been updated.");
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $page = Page::where("id", "=", $id)->first();
         $page->delete();
-        return redirect()->back();
+        return redirect()->back()->withOk("The page has correctly been deleted.");
     }
 }

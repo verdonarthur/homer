@@ -4,9 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PageCreationRequest extends FormRequest
+class PageUpdateRequest extends FormRequest
 {
-    public function rules(): array
+    
+    public function rules()
     {
         return [
             "title" => "required",

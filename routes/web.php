@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 // Route::get('/page-creation', [PageController::class, 'showPageCreationForm']);
-Route::resource("pages", PagesController::class)->only(["index", "edit", "show", "destroy", "create", "store"]);
+Route::resource("pages", PagesController::class);
 
 
 require __DIR__.'/auth.php';
