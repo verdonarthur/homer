@@ -4,17 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PagesTableSeeder extends Seeder
 {
     public function run()
     {
-        for($i = 1; $i <= 50; $i ++){
-            DB::table('pages')->insert([
-                "title" => "Page title ".$i,
-                "url" => "url".$i
-            ]);
-        }
+        $data = [];
+        for($i = 1; $i <= 1000; $i ++){
+            $new_data = [
+                'title' => fake()->state(),
+                'url' => 'url'.$i
+            ];
+            array_push($data, $new_data);
+        }                    
+        DB::table('pages')->insert($data);
     }
 }

@@ -11,7 +11,7 @@ class PagesDisplayController extends Controller
 {
     public static function display($page){
         // return response()->view('page_view')->with("page", $page);
-        return view('page_view')->with("page", $page);
+        return view('frontend/page/page_view')->with("page", $page);
     }
 
     public static function findRoute(Request $request){

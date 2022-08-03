@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .page-creation {
     display: flex;
     justify-content: center;
@@ -94,10 +93,22 @@
     margin: 1rem 0 0 0;
 }
 
-.delete{
+.delete {
     background-color: tomato;
 }
 
 .hidden {
-display: none;
+    display: none;
+}
+
+.a {
+    color: #818CF8;
+}
+
+.secondary {
+    background-color: #818CF8;
+}
+
+.warning-button {
+    background-color: tomato;
 }
