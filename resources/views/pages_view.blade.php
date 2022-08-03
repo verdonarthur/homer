@@ -4,61 +4,66 @@
             Pages
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in the backoffice!
-                </div>
-            </div>
-        </div>
-    </div>
     <x-slot name="slot">
-        <div class="pages-list-header">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <a href="{{ route('pages.create') }}">
-                    <x-button>Add new page</x-button>
-                </a>
-            </div>
+        <div class="pages-list-header max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h3 class="pages-list-title font-semibold">Pages list</h3>
+            <form method="GET" action="{{ route('pages.create') }}">
+                <x-button>Add new page</x-button>
+            </form>
         </div>
         <div class="list max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <ul>
                 @foreach ($pages as $page)
                     <li class="page bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="title">{{ $page->title }}</div>
-                        <div class="url">{{ $page->url }}</div>
-                        <a href="{{ route('pages.edit', [$page->id]) }}">
-                            <x-button style="background-color: #818CF8">Edit</x-button>
-                        </a>
-                        <form method="POST" action="{{ route('pages.destroy', [$page->id]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <a href="{{ route('pages.destroy', [$page->id]) }}">
-                                <x-button style="background-color: tomato">Destroy</x-button>
-                            </a>
-                        </form>
+                        <div class="title"><a style="color: #818CF8"
+                                href="{{ route('pages.show', [$page->url]) }}">{{ $page->title }}</a></div>
+                        <div class="page-buttons">
+                            <form class="page-button" method="GET" action="{{ route('pages.edit', [$page->id]) }}">
+                                <x-button style="background-color: #818CF8">Edit</x-button>
+                            </form>
+                            <form class="page-button" method="POST" action="{{ route('pages.destroy', [$page->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <x-button class="delete">Delete </x-button>
+                            </form>
+                        </div>
                     </li>
                 @endforeach
             </ul>
             {!! $links !!}
         </div>
-        <style>
-            .pages-list-header {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+        <div class="confirmation-form hidden">
+            <span class="confirmation-text">Are you sure you want to delete the page ? This action cannot be
+                undone.</span>
+            <div class="confirmation-buttons">
+                <x-button style="background-color:#818CF8" onClick="hideConfirmationForm()">Cancel</x-button>
+                <form class="page-button" action="{{ route('pages.destroy', [$page->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <x-button>Delete this page</x-button>
+                </form>
+            </div>
+        </div>
+
+        {{-- <script>
+            const confirmation_form = document.querySelector('.confirmation-form')
+
+            const delete_buttons = document.querySelectorAll('.deleteButton')
+            delete_buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    showConfirmationForm(e.target.dataset.pageTitle)
+                })
+            })
+
+            function showConfirmationForm(page_title) {
+                confirmation_form.classList.remove('hidden')
+                confirmation_form.querySelector('.confirmation-text').textContent = `Are you sure you want to delete the page ${page_title} ? This action cannot be undone.`
             }
 
-            .page {
-                display: flex;
-                padding: 0.3rem 1rem 0.3rem 1rem;
-                flex-direction: row;
-                justify-content: space-between;
-                align-content: space-evenly;
-                margin: 0 0 1rem 0;
-                border-radius: 0.2rem;
+            function hideConfirmationForm() {
+                console.log("hides")
+                confirmation_form.classList.add('hidden')
             }
-        </style>
+        </script> --}}
     </x-slot>
 </x-app-layout>

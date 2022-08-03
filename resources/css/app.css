@@ -1,3 +1,103 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.page-creation {
+    display: flex;
+    justify-content: center;
+}
+
+.form-title {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+}
+
+.page-creation-form {
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid #D0D0D0;
+    border-radius: 0.75rem;
+    background-color: #F8F8F8;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.page-label {
+    margin: 0 0 0 0.75rem;
+    font-size: inherit;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1rem 0;
+}
+
+.submit {
+    margin: 1rem 0 1rem 0;
+}
+
+.pages-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.pages-list-title {
+    margin: 0 1rem 0 0;
+    font-size: larger;
+}
+
+.page {
+    display: flex;
+    padding: 0.3rem 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-evenly;
+    margin: 0 0 1rem 0;
+    border-radius: 0.2rem;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+}
+
+.page-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-button {
+    margin: 0 1rem;
+}
+
+.confirmation-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 0.1rem solid #D0D0D0;
+    border-radius: 0.75rem;
+    background-color: #F8F8F8;
+    margin: 2rem;
+    padding: 1rem;
+    position: absolute;
+    top: 20rem;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+}
+
+.delete{
+    background-color: tomato;
+}
+
+.hidden {
+display: none;
+}

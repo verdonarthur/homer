@@ -8,16 +8,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PagesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        for($i = 0; $i <= 10; $i ++){
+        for($i = 1; $i <= 50; $i ++){
             DB::table('pages')->insert([
-                "title" => "Title".$i,
+                "title" => "Page title ".$i,
                 "url" => "url/".$i
             ]);
         }

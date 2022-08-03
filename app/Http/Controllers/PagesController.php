@@ -52,9 +52,14 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($url)
     {
-        //
+        $page = Page::where('url', '=', $url)->first();
+        if($page != null){
+            return view("page_view.blade.php");
+        } else {
+            return abort(403, "This page does not exist");
+        }
     }
 
     /**
