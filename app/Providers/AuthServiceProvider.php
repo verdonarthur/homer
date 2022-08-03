@@ -23,15 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
-        $this->registerPolicies($gate);
-
-        /**
-         * Rend true si l'utilisateur appartient au group admin
-         */
-        $gate->define('isAdmin', function ($user) {
-            return $user->groupd_id == 1;
-        });
+        $this->registerPolicies();
     }
 }

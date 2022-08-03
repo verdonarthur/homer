@@ -1,9 +1,9 @@
 <?php
 
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PagesDisplayController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::resource("pages", PagesController::class);
-
 
 require __DIR__.'/auth.php';
 require __DIR__.'/backoffice.php';
 
-Route::fallback(function() {
-    return 'Hm, why did you land here somehow?';
-})->middleware(['display_management']);
+Route::fallback(function(Request $request){
+return PagesDisplayController::findRoute($request);
+});

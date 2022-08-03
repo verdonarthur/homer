@@ -18,7 +18,7 @@
                         <div class="title"><a style="color: #818CF8"
                                 href="{{ route('pages.show', [$page->url]) }}">{{ $page->title }}</a></div>
                         <div class="page-buttons">
-                            <form class="page-button" method="GET" action="{{ route('pages.edit', [$page->id]) }}">
+                            <form class="page-button" method="GET" action="/{{$page->url}}">
                                 <x-button style="background-color: #818CF8">Edit</x-button>
                             </form>
                             <form class="page-button" method="POST" action="{{ route('pages.destroy', [$page->id]) }}">

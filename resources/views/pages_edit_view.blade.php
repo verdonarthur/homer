@@ -5,7 +5,10 @@
         </h2>
     </x-slot>
     <div class="page-creation">
-        <form class="page-creation-form" method="POST" action="{{ route('pages.update', [$page->id]) }}" accept-charset="UTF-8">
+     <form method="GET" action="/{{$page->url}}" accept-charset="UTF-8">
+   <a href="/{{$page->url}}"> <x-button>View page</x-button></a>
+    </form>
+        <form class="page-creation-form" method="POST" target="_blank" action="{{ route('pages.update', [$page->id]) }}" accept-charset="UTF-8">
             @csrf
             @method('PUT')
             <div class="form-title">
