@@ -1,8 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PagesDisplayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/page-creation', [PageController::class, 'showPageCreationForm']);
-Route::resource("pages", PagesController::class);
+    Route::resource("pages", PagesController::class);
 
 
 require __DIR__.'/auth.php';
 require __DIR__.'/backoffice.php';
+
+Route::fallback(function() {
+    return 'Hm, why did you land here somehow?';
+})->middleware(['display_management']);
