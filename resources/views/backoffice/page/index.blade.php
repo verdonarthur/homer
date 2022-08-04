@@ -16,18 +16,18 @@
         <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
             <ul>
                 @foreach ($pages as $page)
-                    <li class="flex flex-row content-evenly justify-between px-2 py-2 mb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="title"><a class="text-indigo-400" href="{{ route('pages.show', [$page->id]) }}">{{ $page->title }}</a></div>
+                    <li class="flex flex-row items-center justify-between px-2 py-2 mb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="basis-2/3 h-full"><a class="h-full">{{ $page->title }}</a></div>
 
                         <div class="flex flex-row">
                             <form method="GET" action="{{route('pages.edit', [$page->id])}}">
-                                <x-button class="secondary">Edit</x-button>
+                                <x-button type="primary">Edit</x-button>
                             </form>
 
                             <form class="mx-2" method="POST" action="{{ route('pages.destroy', [$page->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <x-button class="delete">Delete </x-button>
+                                <x-button type="delete">Delete </x-button>
                             </form>
                         </div>
                     </li>

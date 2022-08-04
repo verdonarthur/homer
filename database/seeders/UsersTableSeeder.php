@@ -2,25 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        $users = [];
-        for($i = 0; $i < 15; $i ++){
-            $n = rand(1, 2);
-            $user = [
-                'group_id' => $n,
-                'name' => fake()->name,
-                'email' => fake()->email,
-                'password' => Hash::make(fake()->password)
-            ];
-            array_push($users, $user);
-        }
-        DB::table('users')->insert($users);
+        User::factory(env('USERS_SEEDER_LIMIT', 10))->create();
     }
 }

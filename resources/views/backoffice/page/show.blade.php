@@ -7,7 +7,7 @@
     </x-slot>
     <x-slot name="slot">
         <div class="pages-list-header">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">           
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             </div>
         </div>
     </x-slot>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class PagesTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $limit = env('PAGES_SEEDER_LIMIT', 50);
         $pages = [];
@@ -16,8 +16,8 @@ class PagesTableSeeder extends Seeder
                 'title' => fake()->sentence,
                 'url' => fake()->word
             ];
-            array_push($pages, $newPage);
-        }                    
+            $pages[] = $newPage;
+        }
         DB::table('pages')->insert($pages);
     }
 }
