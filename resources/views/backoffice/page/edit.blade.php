@@ -6,40 +6,55 @@
     </x-slot>
 
 
-        <div class="flex content-center justify-center flex-col mt-4">
-            <form class="m-auto" method="GET" action="/{{ $page->url }}" accept-charset="UTF-8">
-                <a href="/{{ $page->url }}">
-                    <x-button>View page</x-button>
-                </a>
-            </form>
+    <div class="flex content-center justify-center flex-col mt-4">
+        <form class="m-auto" method="GET" action="/{{ $page->url }}" accept-charset="UTF-8">
+            <a href="/{{ $page->url }}">
+                <x-button>View page</x-button>
+            </a>
+        </form>
 
-            <form class="flex flex-col border-2 border-grey-600 bg-slate-50 m-auto rounded-lg p-4 my-4" method="POST" target="_blank"
-                action="{{ route('pages.update', [$page->id]) }}" accept-charset="UTF-8">
-                @csrf
-                @method('PUT')
-                <div class="flex justify-center my-2">
-                    <h3 class="font-semibold">Page edition form</h3>
-                </div>
+        <form class="flex flex-col border-2 border-grey-600 bg-slate-50 m-auto rounded-lg p-4 my-4" method="POST"
+            target="_blank" action="{{ route('pages.update', [$page->id]) }}" accept-charset="UTF-8">
+            @csrf
+            @method('PUT')
+            <div class="flex justify-center my-2">
+                <h3 class="font-semibold">Page edition form</h3>
+            </div>
 
-                <x-label class="page-label">Title</x-label>
-                <div class="flex justify-center my-4  {!! $errors->has('title') ? 'has-error' : '' !!}">
-                    <x-input type="text" name="title" placeholder="{{ $page->title }}" value="{{ $page->title }}"
-                        class="form-control"></x-input>
-                    {!! $errors->first('title', '<small class="help-block">:message</small>') !!}
-                </div>
+            <x-label class="page-label">Title</x-label>
+            <div class="flex justify-center my-4  {!! $errors->has('title') ? 'has-error' : '' !!}">
+                <x-input type="text" name="title" placeholder="{{ $page->title }}" value="{{ $page->title }}"
+                    class="form-control"></x-input>
+                {!! $errors->first('title', '<small class="help-block">:message</small>') !!}
+            </div>
 
-                <x-label class="page-label">Url</x-label>
-                <div class="flex justify-center my-4 {!! $errors->has('url') ? 'has-error' : '' !!}">
-                    <x-input type="text" name="url" placeholder="{{ $page->url }}" value="{{ $page->url }}"
-                        class="form-control"></x-input>
-                    {!! $errors->first('url', '<small class="help-block">:message</small>') !!}
-                </div>
+            <x-label class="page-label">Url</x-label>
+            <div class="flex justify-center my-4 {!! $errors->has('url') ? 'has-error' : '' !!}">
+                <x-input type="text" name="url" placeholder="{{ $page->url }}" value="{{ $page->url }}"
+                    class="form-control"></x-input>
+                {!! $errors->first('url', '<small class="help-block">:message</small>') !!}
+            </div>
 
-                <div class="flex justify-center m-2">
-                    <x-button>Update the page</x-button>
-                </div>
-            </form>
+            <x-label class="page-label">Type</x-label>
+            <div class="flex justify-center my-4 {!! $errors->has('url') ? 'has-error' : '' !!}">
+                <select
+                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-control mr-auto" name="type_id" class="form-control">
+                    @foreach($types as $type)
+                    @if($page->type_id === $type['id'])
+                        <option value="{{$type['id']}}" selected>{{$type['name']}}</option>
+                        @else
+                        <option value="{{$type['id']}}">{{$type['name']}}</option>
+                        @endif
+                    @endforeach
+                </select>
+                {!! $errors->first('url', '<small class="help-block">:message</small>') !!}
+            </div>
 
-        </div>
+            <div class="flex justify-center m-2">
+                <x-button>Update the page</x-button>
+            </div>
+        </form>
+
+    </div>
 
 </x-backoffice-layout>

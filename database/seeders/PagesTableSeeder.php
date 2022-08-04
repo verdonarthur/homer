@@ -12,7 +12,9 @@ class PagesTableSeeder extends Seeder
         $limit = env('PAGES_SEEDER_LIMIT', 50);
         $pages = [];
         for($i = 0; $i < $limit; $i++){
+            $n = rand(1,3);
             $newPage = [
+                'type_id' => $n,
                 'title' => fake()->sentence,
                 'url' => fake()->word
             ];
@@ -21,3 +23,4 @@ class PagesTableSeeder extends Seeder
         DB::table('pages')->insert($pages);
     }
 }
+

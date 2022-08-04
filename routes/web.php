@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\TypesController;
 use App\Http\Controllers\PagesDisplayController;
 
 
@@ -19,7 +21,8 @@ use App\Http\Controllers\PagesDisplayController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::resource('pages', PagesController::class);
+Route::resource('types', TypesController::class);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/backoffice.php';
@@ -27,3 +30,4 @@ require __DIR__ . '/backoffice.php';
 Route::fallback(function (Request $request) {
     return PagesDisplayController::handleRoute($request);
 });
+
