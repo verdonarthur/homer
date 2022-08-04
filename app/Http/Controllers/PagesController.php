@@ -34,7 +34,7 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Page::whereId($id)->firstOrFail();
-        return view('frontend/page/pages_edit_view', ['page' => $page]);
+        return view('backoffice.page.edit', ['page' => $page]);
     }
 
     public function update(PageUpdateRequest $request, $id)

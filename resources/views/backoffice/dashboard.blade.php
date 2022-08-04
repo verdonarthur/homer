@@ -15,7 +15,7 @@
         </div>
     </div>
     <x-slot name="slot">
-        <div class="pages-list-header">
+        <div class="flex">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <a href="{{ route('pages.index') }}">
                     <x-button>Pages</x-button>
