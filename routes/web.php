@@ -21,9 +21,9 @@ Route::get('/', function () {
 });
 
 
-require __DIR__.'/auth.php';
-require __DIR__.'/backoffice.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/backoffice.php';
 
-Route::fallback(function(Request $request){
-return PagesDisplayController::findRoute($request);
+Route::fallback(function (Request $request) {
+    return PagesDisplayController::handleRoute($request);
 });

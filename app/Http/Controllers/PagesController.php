@@ -11,36 +11,32 @@ class PagesController extends Controller
     public function index()
     {   
         $pages = Page::paginate(10);  
-        return view('frontend/page/pages_view', ['pages' => $pages, 'links' => $pages->render()]);
+        return view('backoffice.page.index', ['pages' => $pages, 'links' => $pages->render()]);
     }
 
-   
     public function create()
     {
-        return view('frontend/page/pages_creation_view');
+        return view('backoffice.page.create');
     }
 
-    
     public function store(PageCreationRequest $request)
     {
         Page::create($request->validated());
         return redirect()->action([PagesController::class, 'index']);
     }
 
-    public function show($url)
+    public function show($id)
     {
-        $page = Page::whereUrl($url)->firstOrFail();
-        return view('frontend/page/page_view', ['page' => $page]);
+        $page = Page::whereId($id)->firstOrFail();
+        return view('backoffice.page.show', ['page' => $page]);
     }
 
-    
     public function edit($id)
     {
         $page = Page::whereId($id)->firstOrFail();
         return view('frontend/page/pages_edit_view', ['page' => $page]);
     }
 
-    
     public function update(PageUpdateRequest $request, $id)
     {
         $page = Page::whereId($id)->update([
@@ -49,7 +45,6 @@ class PagesController extends Controller
         ]);
         return redirect()->action([PagesController::class, 'index']);
     }
-
     
     public function destroy($id)
     {

@@ -9,18 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class PagesDisplayController extends Controller
 {
-    public static function display($page){
-        // return response()->view('page_view')->with("page", $page);
-        return view('frontend/page/page_view')->with("page", $page);
-    }
-
-    public static function findRoute(Request $request){
+    public static function handleRoute(Request $request){
         $asked_url = $request->path();
         $possible_page = Page::whereUrl($asked_url)->first();
         if($possible_page === null){
             abort(404);
         } else {
-            return PagesDisplayController::display($possible_page);
+            return view('frontend.page.index', ['page' => $possible_page]);
         }
     }
 }

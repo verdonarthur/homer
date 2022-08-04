@@ -9,5 +9,5 @@ Route::prefix('/backoffice')->middleware(['auth', 'auth.can-access-backoffice'])
     })->name('dashboard');
 });
 
-Route::resource("pages", PagesController::class);
+Route::resource('pages', PagesController::class);
 

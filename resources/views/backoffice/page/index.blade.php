@@ -17,7 +17,7 @@
             <ul>
                 @foreach ($pages as $page)
                     <li class="page bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="title"><a class ="a" href="{{ route('pages.show', [$page->url]) }}">{{ $page->title }}</a></div>
+                        <div class="title"><a class="a" href="{{ route('pages.show', [$page->id]) }}">{{ $page->title }}</a></div>
 
                         <div class="page-buttons">
                             <form class="page-button" method="GET" action="{{route('pages.edit', [$page->id])}}">
