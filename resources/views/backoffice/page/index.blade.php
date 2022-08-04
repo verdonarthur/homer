@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="slot">
 
-        <div class="flex flex-row justify-start p-t2 max-w-7xl mx-auto pt-6 pb-4 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-row justify-start p-t2 max-w-7xl mx-auto pt-6 pb-4 px-4 sm:px-6 lg:px-8 mb-6">
             <h3 class="pages-list-title font-semibold mr-4">Pages list</h3>
             <form method="GET" action="{{ route('pages.create') }}">
                 <x-button>Add new page</x-button>

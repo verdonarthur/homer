@@ -9,14 +9,15 @@ class PagesTableSeeder extends Seeder
 {
     public function run()
     {
-        $data = [];
-        for($i = 1; $i <= 1000; $i ++){
-            $new_data = [
-                'title' => fake()->state(),
-                'url' => 'url'.$i
+        $limit = env('PAGES_SEEDER_LIMIT', 50);
+        $pages = [];
+        for($i = 0; $i < $limit; $i++){
+            $newPage = [
+                'title' => fake()->sentence,
+                'url' => fake()->word
             ];
-            array_push($data, $new_data);
+            array_push($pages, $newPage);
         }                    
-        DB::table('pages')->insert($data);
+        DB::table('pages')->insert($pages);
     }
 }

@@ -10,17 +10,17 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('users')->insert([
-            "group_id" => 1,
-            "name" => "admin2",
-            "email" => "email1@gmx.ch",
-            "password" => Hash::make("password1"),
-        ]);
-        DB::table('users')->insert([
-            "group_id" => 2,
-            "name" => "not-admin",
-            "email" => "email2@gmx.ch",
-            "password" => Hash::make("password2"),
-        ]);
+        $users = [];
+        for($i = 0; $i < 15; $i ++){
+            $n = rand(1, 2);
+            $user = [
+                'group_id' => $n,
+                'name' => fake()->name,
+                'email' => fake()->email,
+                'password' => Hash::make(fake()->password)
+            ];
+            array_push($users, $user);
+        }
+        DB::table('users')->insert($users);
     }
 }
