@@ -16,8 +16,8 @@
         <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
             <ul>
                 @foreach ($types as $type)
-                    <li class="flex flex-row content-evenly justify-between px-2 py-2 mb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="title">{{ $type->name }}</div>
+                    <li class="flex flex-row content-evenly items-center justify-between px-2 py-2 mb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div><span>{{ $type->name }}</span></div>
 
                         <div class="flex flex-row">
                             <form method="GET" action="{{route('types.edit', [$type->id])}}">
