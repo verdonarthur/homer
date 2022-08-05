@@ -21,13 +21,13 @@
 
                         <div class="flex flex-row">
                             <form method="GET" action="{{route('types.edit', [$type->id])}}">
-                                <x-button class="secondary">Edit</x-button>
+                                <x-button type="primary">Edit</x-button>
                             </form>
 
                             <form class="mx-2" method="POST" action="{{ route('types.destroy', [$type->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <x-button class="delete">Delete </x-button>
+                                <x-button type="delete">Delete </x-button>
                             </form>
                         </div>
                     </li>

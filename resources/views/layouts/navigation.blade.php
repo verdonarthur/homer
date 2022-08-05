@@ -21,6 +21,11 @@
                         {{ __('Pages') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('pages.types')">
+                        {{ __('Page types') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
