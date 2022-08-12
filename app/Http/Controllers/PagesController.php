@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Type;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\PageUpdateRequest;
 use App\Http\Requests\PageCreationRequest;
-use Illuminate\Http\RedirectResponse;
 
 class PagesController extends Controller
 {
@@ -18,7 +19,8 @@ class PagesController extends Controller
 
     public function create(): View
     {
-        return view('backoffice.page.create');
+        $types = Type::get()->toArray();
+        return view('backoffice.page.create', ['types' => $types]);
     }
 
     public function store(PageCreationRequest $request): RedirectResponse
@@ -36,7 +38,8 @@ class PagesController extends Controller
     public function edit(int $id): View
     {
         $page = Page::whereId($id)->firstOrFail();
-        return view('backoffice.page.edit', ['page' => $page]);
+        $types = Type::get()->toArray();
+        return view('backoffice.page.edit', ['page' => $page, 'types' => $types]);
     }
 
     public function update(PageUpdateRequest $request,int $id): RedirectResponse
@@ -48,7 +51,7 @@ class PagesController extends Controller
     
     public function destroy(int $id): RedirectResponse
     {
-        $page = Page::whereId($id)->firstOrFail()->delete();
+        Page::whereId($id)->firstOrFail()->delete();
         return redirect()->action([PagesController::class, 'index']);
     }
 }
